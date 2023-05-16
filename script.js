@@ -14,13 +14,6 @@ const modalText = document.getElementById('modal-text');
 eulerButton.style.display = 'block';
 gameButton.style.display = 'block';
 
-eulerButton.addEventListener('click', () => {
-    eulerButton.style.display = 'none';
-    gameButton.style.display = 'none';
-    backButton.style.display = 'block';
-    content.innerHTML = `<p id="euler-number">${eulersNumber.slice(0, 1000)}</p>`;
-});
-
 gameButton.addEventListener('click', () => {
     eulerButton.style.display = 'none';
     gameButton.style.display = 'none';
@@ -43,21 +36,32 @@ backButton.addEventListener('click', () => {
 
 close.addEventListener('click', () => {
     modal.style.display = 'none';
+    this.value = '';
+    correctDigits = 2;
+    currentIndex = 3;
+    enteredDigits = ['2', '.', '7'];
 });
+
 
 window.addEventListener('click', event => {
     if (event.target === modal) {
         modal.style.display = 'none';
+        this.value = '';
+        correctDigits = 2;
+        currentIndex = 3;
+        enteredDigits = ['2', '.', '7'];
     }
 });
 
 
+
 function checkGuess() {
-    const guess = this.value;
-    if (guess === eulersNumber[currentIndex]) {
+    const lastEnteredDigit = this.value.slice(-1); // Get the last digit entered
+
+    if (lastEnteredDigit === eulersNumber[currentIndex]) {
         correctDigits++;
         document.getElementById('score').textContent = `Correct Digits: ${correctDigits}`;
-        enteredDigits.push(guess);
+        enteredDigits.push(lastEnteredDigit);
         if (enteredDigits.length > 4) {
             enteredDigits.shift();
         }
@@ -66,9 +70,6 @@ function checkGuess() {
     } else {
         modal.style.display = 'block';
         modalText.textContent = `The correct next 4 numbers would have been ${eulersNumber.slice(currentIndex, currentIndex + 4)}`;
-        this.value = '';
-        correctDigits = 2;
-        currentIndex = 3;
-        enteredDigits = ['2', '.', '7'];
     }
 }
+
