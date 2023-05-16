@@ -1,7 +1,7 @@
 const eulersNumber = '2.718281828459045235360287471352662497757247093699959574966967627724076630353547594571382178525166427427466391932003059921817413596629043572900334295260595630738132328627943490763233829880753195251019011573834187930702154089149934884167509244761460668082264800168477411853742345442437107539077744992069';
-let correctDigits = 0;
-let currentIndex = 0;
-let enteredDigits = [];
+let correctDigits = 2;
+let currentIndex = 3;
+let enteredDigits = ['2', '.', '7'];
 
 const content = document.getElementById('content');
 const backButton = document.getElementById('back-button');
@@ -26,9 +26,9 @@ gameButton.addEventListener('click', () => {
     gameButton.style.display = 'none';
     backButton.style.display = 'block';
     content.innerHTML = `
-        <p id="score">Correct Digits: 0</p>
+        <p id="score">Correct Digits: 2</p>
         <input type="number" id="guess-input" min="0" max="9">
-        <p id="last-four-digits"></p>`;
+        <p id="last-four-digits">2.7</p>`;
     const input = document.getElementById('guess-input');
     input.focus();
     input.addEventListener('input', checkGuess);
@@ -66,8 +66,8 @@ function checkGuess() {
         modal.style.display = 'block';
         modalText.textContent = `The correct next 4 numbers would have been ${eulersNumber.slice(currentIndex, currentIndex + 4)}`;
         this.value = '';
-        correctDigits = 0;
-        currentIndex = 0;
-        enteredDigits = [];
+        correctDigits = 2;
+        currentIndex = 3;
+        enteredDigits = ['2', '.', '7'];
     }
 }
