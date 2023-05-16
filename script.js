@@ -51,6 +51,7 @@ window.addEventListener('click', event => {
     }
 });
 
+
 function checkGuess() {
     const guess = this.value;
     if (guess === eulersNumber[currentIndex]) {
